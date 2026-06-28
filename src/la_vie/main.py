@@ -22,9 +22,11 @@ class ContentFlow(Flow[ContentState]):
         print("Planning content")
 
         if crewai_trigger_payload:
-            self.state.topic = crewai_trigger_payload.get("topic", "AI Agents")
+            self.state.topic = crewai_trigger_payload.get(
+                "topic", self.state.topic or "AI Agents"
+            )
             print(f"Using trigger payload: {crewai_trigger_payload}")
-        else:
+        elif not self.state.topic:
             self.state.topic = "AI Agents"
 
         print(f"Topic: {self.state.topic}")
@@ -46,7 +48,7 @@ class ContentFlow(Flow[ContentState]):
         print("Saving content")
         output_dir = Path("output")
         output_dir.mkdir(exist_ok=True)
-        with open(output_dir / "post.md", "w") as f:
+        with open(output_dir / "post.md", "w", encoding="utf-8") as f:
             f.write(self.state.final_post)
         print("Post saved to output/post.md")
 
