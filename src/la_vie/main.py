@@ -10,13 +10,9 @@ from la_vie.crews.content_crew.content_crew import ContentCrew
 
 class ContentState(BaseModel):
     topic: str = ""
-    outline: str = ""
-    draft: str = ""
     final_post: str = ""
 
-
 class ContentFlow(Flow[ContentState]):
-
     @start()
     def plan_content(self, crewai_trigger_payload: dict = None):
         print("Planning content")
