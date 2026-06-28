@@ -38,7 +38,7 @@ crewai run
 
 This command initializes the la-vie Flow as defined in your configuration.
 
-This example, unmodified, will run a content creation flow on AI Agents and save the output to `output/post.md`.
+This example, unmodified, will run a content creation flow on AI Agents and save the final post in the flow state.
 
 ## Understanding Your Crew
 
